@@ -119,12 +119,12 @@ export const menu_list = [
 export const food_list = [
   {
     _id: "100",
-    name: "Greek salad",
-    image: food_1,
-    price: 12,
+    name: "Pasta (Out Of Stock)",
+    image: food_26,
+    price: "--",
     description:
-      "Food provides essential nutrients for overall health and well-being",
-    category: "Salad",
+      "Currently out of stock. Please check back later or choose another.",
+    category: "Pure Veg",
   },
   {
     _id: "1",
@@ -139,7 +139,7 @@ export const food_list = [
     _id: "2",
     name: "Veg salad",
     image: food_2,
-    Price: 18,
+    price: 13,
     description:
       "Food provides essential nutrients for overall health and well-being",
     category: "Salad",
