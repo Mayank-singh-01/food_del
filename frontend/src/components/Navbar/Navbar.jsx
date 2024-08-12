@@ -3,9 +3,8 @@ import "./Navbar.css"
 import {assets} from "../../assets/assets"
 import {Link} from 'react-router-dom'
 
-function navbar() {
-
-  const [menu,setMenu] = useState("home")
+function navbar({ setShowLogin }) {
+  const [menu, setMenu] = useState("home");
 
   return (
     <div className="navbar">
@@ -27,7 +26,8 @@ function navbar() {
           }}
           className={menu === "menu" ? "active" : ""}
         >
-          menu
+          {" "}
+          menu{" "}
         </a>
         <a
           href="#app-download"
@@ -36,7 +36,8 @@ function navbar() {
           }}
           className={menu === "mobile-app" ? "active" : ""}
         >
-          mobile-app
+          {" "}
+          mobile-app{" "}
         </a>
         <a
           href="#footer"
@@ -45,7 +46,7 @@ function navbar() {
           }}
           className={menu === "context us" ? "active" : ""}
         >
-          context us
+          context us{" "}
         </a>
       </ul>
       <div className="navbar-right">
@@ -54,7 +55,7 @@ function navbar() {
           <img src={assets.basket_icon} alt="" />
           <div className="dot"></div>
         </div>
-        <button>sing in</button>
+        <button onClick={()=>setShowLogin(true)} >sing in</button>
       </div>
     </div>
   );
