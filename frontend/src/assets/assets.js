@@ -119,7 +119,7 @@ export const menu_list = [
 export const food_list = [
   {
     _id: "100",
-    name: "Pasta (Out Of Stock)",
+    name: "Pasta(Out Of Stock)",
     image: food_26,
     price: "--",
     description:
