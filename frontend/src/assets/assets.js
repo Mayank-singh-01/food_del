@@ -124,7 +124,7 @@ export const food_list = [
     price: "--",
     description:
       "Currently out of stock. Please check back later or choose another.",
-    category: "Pure Veg",
+    category: "Noodles",
   },
   {
     _id: "1",
