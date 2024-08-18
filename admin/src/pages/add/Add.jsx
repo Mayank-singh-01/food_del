@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import './Add.css';
 import { assets } from '../../assets/assets';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
-function Add() {
+function Add({url}) {
 
-  const url = "http://localhost:4000";
+  // const url = "http://localhost:4000";
    const [image,setImage] = useState(null);
    const [data,setData] = useState({
     name:"",
@@ -37,7 +38,11 @@ function Add() {
           price: "",
           category: "Salad",
         })
-        setImage(null);
+        setImage(null)
+        toast.success(response.data.massage)
+    }
+    else {
+      toast.error(response.data.massage)
     }
 
    }

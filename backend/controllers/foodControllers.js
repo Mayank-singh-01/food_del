@@ -7,7 +7,6 @@ import multer from "multer";
 
 const addFood = async (req,res) =>{
 
-   console.log(req.file);
    let image_filename = `${req.file.filename}`;
 
    const food = new foodModel({
