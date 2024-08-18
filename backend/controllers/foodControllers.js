@@ -1,10 +1,13 @@
 import foodModel from "../models/foodModels.js";
 import fs from 'fs';
+import multer from "multer";
+
 
 //add food items
 
 const addFood = async (req,res) =>{
 
+   console.log(req.file);
    let image_filename = `${req.file.filename}`;
 
    const food = new foodModel({
@@ -22,6 +25,7 @@ const addFood = async (req,res) =>{
       res.json({ success:false, massage: "Error" });
    }
 }
+
 
 //all food list 
 const listFood = async (req,res) => {
