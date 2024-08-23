@@ -1,49 +1,49 @@
-import React, { useContext, useState } from 'react'
-import'./LoginPopup.css'
-import { assets } from '../../assets/assets'
-import { StoreContext } from '../../context/StoreContext';
+import React, { useContext, useState } from "react";
+import "./LoginPopup.css";
+import { assets } from "../../assets/assets";
+import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 
-function LoginPopup({setShowLogin}) {
-
+function LoginPopup({ setShowLogin }) {
   const { url, setToken } = useContext(StoreContext);
 
-   const [currState, setCurrState] = useState("Login");
-   const [data,setData] = useState({
-    name:"",
-    email:"",
-    password:""
-   });
+  const [currState, setCurrState] = useState("Login");
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-   const onChangeHandler = (event) => {
+  const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setData(data=>({...data,[name]:value}))
-   }
-  
-   const onLogin = async (event) => {
+    setData((data) => ({ ...data, [name]: value }));
+  };
+
+  const onLogin = async (event) => {
     event.preventDefault();
     let newUrl = url;
-    if(currState==="login") {
-      newUrl += "/api/user/login"
-    }
-    else {
-      newUrl += "/api/user/register"
-    }
-
-    const response = await axios.post(newUrl,data)
-
-    if (response.data.success) {
-      setToken(response.data.token);
-      localStorage.setItem("token", response.data.token);
-      setShowLogin(false)
-    }
-    else {
-      alert(response.data.message)
+    if (currState === "Login") {
+      newUrl += "/api/user/login";
+    } else {
+      newUrl += "/api/user/register";
     }
 
-   }
+    try {
+      const response = await axios.post(newUrl, data);
 
+      if (response.data.success) {
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        setShowLogin(false);
+      } else {
+        alert(response.data.message);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+      alert("Something went wrong. Please try again later.");
+    }
+  };
 
   return (
     <div className="login-popup">
@@ -53,13 +53,11 @@ function LoginPopup({setShowLogin}) {
           <img
             onClick={() => setShowLogin(false)}
             src={assets.cross_icon}
-            alt=""
+            alt="Close"
           />
         </div>
         <div className="login-popup-inputs">
-          {currState === "Login" ? (
-            <></>
-          ) : (
+          {currState === "Sign Up" && (
             <input
               type="text"
               name="name"
@@ -86,14 +84,16 @@ function LoginPopup({setShowLogin}) {
             required
           />
         </div>
-        <button type='submit' >{currState === "Sign Up" ? "Creat account" : "Login"}</button>
+        <button type="submit">
+          {currState === "Sign Up" ? "Create account" : "Login"}
+        </button>
         <div className="login-popup-condition">
           <input type="checkbox" required />
-          <p>By continuing, i agree to the terms of use & privacy policy.</p>
+          <p>By continuing, I agree to the terms of use & privacy policy.</p>
         </div>
         {currState === "Login" ? (
           <p>
-            Creat a new account?{" "}
+            Create a new account?{" "}
             <span onClick={() => setCurrState("Sign Up")}>Click here</span>
           </p>
         ) : (
@@ -107,4 +107,4 @@ function LoginPopup({setShowLogin}) {
   );
 }
 
-export default LoginPopup
+export default LoginPopup;

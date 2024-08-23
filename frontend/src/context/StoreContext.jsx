@@ -1,5 +1,6 @@
-import React, { createContext, useState } from "react";
-import { food_list } from "../assets/assets"; // Adjust the path as necessary
+import React, { createContext, useEffect, useState } from "react";
+import axios from "axios";
+import { food_list } from "../assets/assets"; 
 
 export const StoreContext = createContext(null);
 
@@ -39,6 +40,12 @@ const StoreContextProvider = (props) => {
     });
     return totalAmount;
   };
+
+  useEffect(()=>{
+    if (localStorage.getItem("token")) {
+       setToken(localStorage.getItem("token"));
+    }
+  },[])
 
 
   const contextValue = {
